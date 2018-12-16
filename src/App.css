@@ -3,42 +3,44 @@
   padding: 10px;
 }
 
+hr {margin: 0}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border-left: 1px solid rgb(201, 199, 199);
+}
+
+th {
+  padding: 15px;
+  border-left: 1px solid rgb(201, 199, 199);
+  border-bottom: 0;
+  border-top: 0;
+}
+
+input {
+  text-align: right;
+  padding: 4px;
+  border-radius: 3px;
+  border: 1px solid rgb(194, 188, 188);
+}
+
 .theadAtivos {
   background: #f4f4f4;
-  width: 75px;
 }
 
 .thNomes {
   padding-right: 500px;
   text-align: left;
   font-weight: normal;
-  font-size: 15px
+  font-size: 15px;
 }
 
 .thInvestimento {
   text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-hr {
-  padding: 0;
-  margin: 0;
-}
-
-.tdNomes {
-  text-align: left;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 20px;
-  padding-left: 15px;
-}
-
-.tdValorPercent {
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
 .inputPorcentagem {
@@ -57,6 +59,14 @@ hr {
   cursor: pointer;
 }
 
+.btnAdd img {
+  vertical-align: middle;
+}
+
+.btnAdd:hover {
+  background-color:#d1e0fc;
+}
+
 .btnAddPortfolio {
   background-color: #fafafa;
   border: 0;
@@ -69,28 +79,12 @@ hr {
   cursor: pointer;
 }
 
-.tdX{
-  text-align: center
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%
-}
-
-.restante {
-  text-align: right;
-  color: black;
-  font-size: 13px;
-  font-weight: normal;
-}
-
-.max {
-  color: red;
-}
-
-td {
-  border-left: 1px solid rgb(201, 199, 199);
+.tdNomes {
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 15px;
 }
 
 .tdValor {
@@ -98,17 +92,11 @@ td {
   float: center;
 }
 
-th {
-  padding: 15px;
-
-  border-left: 1px solid rgb(201, 199, 199);
-  border-bottom: 0;
-  border-top: 0;
+.tdValorPorcento {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-input {
-  text-align: right;
-  padding: 4px;
-  border-radius: 3px;
-  border: 1px solid rgb(194, 188, 188);
+.tdRemove{
+  text-align: center;
 }
