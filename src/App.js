@@ -27,7 +27,7 @@ class TabelaAtivos extends Component {
             tAplicado: 0, 
             tPorcentagem: 0,
             color: '#0000',
-            travado: true,
+            travado: false,
         }
         this.getTotal = this.getTotal.bind(this);
         this.addAtivo = this.addAtivo.bind(this);
@@ -43,8 +43,10 @@ class TabelaAtivos extends Component {
         
         if (ativosN !== undefined) {
             let total = this.getTotal(ativosN);
-            this.setState({ativos: ativosN, tInvestimento: total, tAplicado: total, tPorcentagem: this.calculaPorcentagemT(ativosN)});
+            this.setState({ativos: ativosN, tInvestimento: total, tAplicado: total, tPorcentagem: this.calculaPorcentagemT(ativosN), travado: false});
         }  
+
+        this.setState({travado: true});
     }
 
     getRandomAtivo(n) {
@@ -71,6 +73,8 @@ class TabelaAtivos extends Component {
         let novosAtivos = this.state.ativos.map(ativo => (ativo.id === id) ? { ...ativo, valor } : ativo);
         
         novosAtivos = novosAtivos.map(ativo => (ativo.id === id) ? {ativo, porcentagem: ativo.valor/this.state.tInvestimento * 100} : ativo);
+        
+        if (this.state.travado)
 
         this.setState({
             ativos: novosAtivos,
@@ -125,7 +129,7 @@ class TabelaAtivos extends Component {
                 <thead>
                     <tr className="theadAtivos">                  
                         <th className="thNomes">Ativos (<span>{this.state.ativos.length}</span>)</th>
-                        <div><th>R$ <input type="text" value={this.state.tInvestimento.toFixed(0)} onChange={this.updateInvestimento}/><br/><span className="restante">(Restante:{(this.state.tInvestimento - this.state.tAplicado).toFixed(2)})</span></th></div>
+                        <div><th>R$ <input type="text" value={this.state.tInvestimento.toFixed(0)} onChange={this.updateInvestimento}/><br/><span className="restante">(Restante: {(this.state.tInvestimento - this.state.tAplicado).toFixed(2)})</span></th></div>
                         <th><span>{this.state.tPorcentagem.toFixed(0)}</span> %</th>
                         <th><img alt="" src={ic_lixeira}/></th>
                         <th><ColorPicker animation="slide-up"color={this.state.color} onChange={this.changeHandler}/></th>
