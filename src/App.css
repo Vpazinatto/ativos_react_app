@@ -1,5 +1,5 @@
 .App {
-  float: center;
+  text-align: center;
   padding: 10px;
 }
 
@@ -10,8 +10,22 @@
 
 .thNomes {
   padding-right: 500px;
+  text-align: left;
   font-weight: normal;
   font-size: 15px
+}
+
+.thInvestimento {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+hr {
+  padding: 0;
+  margin: 0;
 }
 
 .tdNomes {
@@ -34,17 +48,21 @@
 .btnAdd {
   background-color: #dfeaff;
   border: 0;
+  margin-top: 10px;
   width: 100%;
   color: #00769d;
-  font-size: 17px;
+  font-size: 13px;
   padding: 5px;
   text-align: left;
   cursor: pointer;
-  font-weight: bold;
 }
 
-.right {
-  text-align: right;
+.btnAddPortfolio {
+  background-color: #fafafa;
+  border: 0;
+  float: center;
+  padding: 0;
+  cursor: pointer;
 }
 
 .btnRemove {
@@ -57,8 +75,8 @@
 
 table {
   border-collapse: collapse;
+  width: 100%
 }
-
 
 .restante {
   text-align: right;
@@ -67,22 +85,22 @@ table {
   font-weight: normal;
 }
 
-max {
+.max {
   color: red;
 }
 
 td {
-  border-right: 1px solid rgb(201, 199, 199);
   border-left: 1px solid rgb(201, 199, 199);
 }
 
 .tdValor {
   text-align: center;
+  float: center;
 }
 
 th {
   padding: 15px;
-  border-right: 1px solid rgb(201, 199, 199);
+
   border-left: 1px solid rgb(201, 199, 199);
   border-bottom: 0;
   border-top: 0;
