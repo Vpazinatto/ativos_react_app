@@ -55,9 +55,16 @@ class TabelaAtivos extends Component {
     }
 
     removeAtivo(e) {
-        this.ativosAux = this.state.ativos.filter(ativo => ativo.id === e.target.value);
-        this.setState({ativos: this.ativosAux});
-        this.calculaPorcentagemT();
+        let novosAtivos = this.state.ativos.filter(ativo => ativo.id !== Number(e.target.id));
+
+        novosAtivos = novosAtivos.map(ativo => (ativo.id === e.target.id) ? {ativo, porcentagem: ativo.valor/this.state.tInvestimento * 100} : ativo);
+        novosAtivos = novosAtivos.map(ativo => (ativo.id === e.target.id) ? { ...ativo, valor: ativo.porcentagem / 100 * this.state.tInvestimento } : ativo);
+
+        this.setState({
+            ativos: novosAtivos,
+            tAplicado: this.getTotal(novosAtivos),
+            tPorcentagem: this.calculaPorcentagemT(novosAtivos),
+        });  
     }
 
     updateValor(e) {
@@ -123,7 +130,7 @@ class TabelaAtivos extends Component {
                 <thead>
                     <tr className="theadAtivos">                  
                         <th className="thNomes">Ativos (<span>{this.state.ativos.length}</span>)</th>
-                        <th className="thInvestimento">R$ <input type="text" value={this.state.tInvestimento.toFixed(0)} onChange={this.updateInvestimento}/><br/><span>(Restante: {(this.state.tInvestimento - this.state.tAplicado).toFixed(2)})</span></th>
+                        <th className="thInvestimento">R$ <input type="text" value={this.state.tInvestimento.toFixed(0)} onChange={this.updateInvestimento}/><br/><span className="spanRestante">(Restante: {(this.state.tInvestimento - this.state.tAplicado).toFixed(2)})</span></th>
                         <th><span>{this.state.tPorcentagem.toFixed(0)}</span> %</th>
                         <th><img alt="" src={ic_lixeira}/></th>
                         <th><ColorPicker animation="slide-up"color={this.state.color} onChange={this.changeHandler}/></th>
