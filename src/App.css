@@ -1,32 +1,96 @@
 .App {
+  float: center;
+  padding: 10px;
+}
+
+.theadAtivos {
+  background: #f4f4f4;
+  width: 75px;
+}
+
+.thNomes {
+  padding-right: 500px;
+  font-weight: normal;
+  font-size: 15px
+}
+
+.tdNomes {
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 15px;
+}
+
+.tdValorPercent {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.inputPorcentagem {
+  max-width: 60px;
+}
+
+.btnAdd {
+  background-color: #dfeaff;
+  border: 0;
+  width: 100%;
+  color: #00769d;
+  font-size: 17px;
+  padding: 5px;
+  text-align: left;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.right {
+  text-align: right;
+}
+
+.btnRemove {
+  cursor: pointer;
+}
+
+.tdX{
+  text-align: center
+}
+
+table {
+  border-collapse: collapse;
+}
+
+
+.restante {
+  text-align: right;
+  color: black;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+max {
+  color: red;
+}
+
+td {
+  border-right: 1px solid rgb(201, 199, 199);
+  border-left: 1px solid rgb(201, 199, 199);
+}
+
+.tdValor {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+th {
+  padding: 15px;
+  border-right: 1px solid rgb(201, 199, 199);
+  border-left: 1px solid rgb(201, 199, 199);
+  border-bottom: 0;
+  border-top: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  text-align: right;
+  padding: 4px;
+  border-radius: 3px;
+  border: 1px solid rgb(194, 188, 188);
 }
