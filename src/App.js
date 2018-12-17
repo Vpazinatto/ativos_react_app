@@ -6,6 +6,7 @@ import ic_add from '../src/ic_add.png';
 import ic_add_large from '../src/ic_add_large.png';
 import ColorPicker from 'rc-color-picker';
 import 'rc-color-picker/assets/index.css';
+import Popup from "reactjs-popup";
 
 class Ativo {
     constructor(id, nome, valor, porcentagem) {
@@ -33,6 +34,7 @@ class TabelaAtivos extends Component {
         this.getTotal = this.getTotal.bind(this);
         this.addAtivo = this.addAtivo.bind(this);
         this.removeAtivo = this.removeAtivo.bind(this);
+        this.removeAtivos = this.removeAtivos.bind(this);
         this.updateValor = this.updateValor.bind(this);
         this.updatePorcentagem = this.updatePorcentagem.bind(this);
         this.updateInvestimento = this.updateInvestimento.bind(this);
@@ -62,6 +64,10 @@ class TabelaAtivos extends Component {
         novosAtivos = novosAtivos.map(ativo => (ativo.id === e.target.id) ? {ativo, porcentagem: ativo.valor/this.state.tInvestimento * 100} : ativo);
         novosAtivos = novosAtivos.map(ativo => (ativo.id === e.target.id) ? { ...ativo, valor: ativo.porcentagem / 100 * this.state.tInvestimento } : ativo);
 
+        if (!this.state.travado) {
+            this.setState({tInvestimento: this.getTotal(novosAtivos)});
+        }
+
         this.setState({
             ativos: novosAtivos,
             tAplicado: this.getTotal(novosAtivos),
@@ -69,17 +75,24 @@ class TabelaAtivos extends Component {
         });
     }
 
+    removeAtivos() {
+        if (window.confirm("Deseja exlcuir todos os ativos ?"))
+            this.setState({ativos: [], tInvestimento: 0, tAplicado: 0, tPorcentagem: 0});
+    }
+
     updateValor(e) {
         let valor = Number(e.target.value);
         let id = Number(e.target.id);
 
         let novosAtivos = this.state.ativos.map(ativo => (ativo.id === id) ? {...ativo, valor } : ativo);
-        
+        novosAtivos = novosAtivos.map(ativo => (ativo.id === id) ? {...ativo, porcentagem: ativo.valor/this.getTotal(novosAtivos) * 100} : ativo);
+
         if (!this.state.travado) {
             this.setState({tInvestimento: this.getTotal(novosAtivos)});
+
+            novosAtivos = novosAtivos.map(ativo => ({...ativo, porcentagem: ativo.valor/this.getTotal(novosAtivos)*100}));
         }
 
-        novosAtivos = novosAtivos.map(ativo => (ativo.id === id) ? {...ativo, porcentagem: ativo.valor/this.getTotal(novosAtivos) * 100} : ativo);
         this.setState({
             ativos: novosAtivos,
             tAplicado:  this.getTotal(novosAtivos),
@@ -95,7 +108,7 @@ class TabelaAtivos extends Component {
         let novosAtivos = this.state.ativos.map(ativo => (ativo.id === id) ? { ...ativo, porcentagem } : ativo);
         novosAtivos = novosAtivos.map(ativo => (ativo.id === id) ? { ...ativo, valor: porcentagem / 100 * this.getTotal(novosAtivos) } : ativo);
 
-        if (!this.state.travado) {
+        if (!this.state.travado) {  
             this.setState({tInvestimento: this.getTotal(novosAtivos)});
         }
         
@@ -126,10 +139,10 @@ class TabelaAtivos extends Component {
 
     calculaPorcentagemT(ativos) {
         let pTotal = Number(ativos.reduce((total, atual) => total + atual.porcentagem, 0));
-        if (pTotal > 100)
-            this.setState({pMaxima: '.pMaxima'});
+        if (pTotal !== 100)
+            this.setState({pMaxima: '#f00'});
         else
-            this.setState({pMaxima: ''});
+            this.setState({pMaxima: '#000'});
         
         return pTotal;
     }
@@ -137,8 +150,6 @@ class TabelaAtivos extends Component {
     changeHandler(colors) {
         this.setState({color: colors.color});
     }
-
-
 
     render() {
         return (
@@ -150,8 +161,8 @@ class TabelaAtivos extends Component {
                     <tr className="theadAtivos">         
                         <th className="thNomes">Ativos (<span>{this.state.ativos.length}</span>)</th>
                         <th className="thInvestimento">R$ <input type="text" value={this.state.tInvestimento.toFixed(0)} onChange={this.updateInvestimento}/><br/><span className="spanRestante">(Restante: {(this.state.tInvestimento - this.state.tAplicado).toFixed(2)})</span></th>
-                        <th><span className={this.state.pMaxima}>{this.state.tPorcentagem.toFixed(0)}%</span></th>
-                        <th><img alt="" src={ic_lixeira}/></th>
+                        <th><span style={{color: this.state.pMaxima}}>{this.state.tPorcentagem.toFixed(0)}%</span></th>
+                        <th><img className="btnLixeira" alt="" src={ic_lixeira} onClick={this.removeAtivos}/></th>
                         <th><ColorPicker animation="slide-up"color={this.state.color} onChange={this.changeHandler}/></th>
                     </tr>
                  </thead>

@@ -104,6 +104,10 @@ input {
   cursor: pointer;
 }
 
+.btnLixeira {
+  cursor: pointer;
+}
+
 .tdNomes {
   text-align: left;
   padding-top: 10px;
