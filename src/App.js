@@ -75,7 +75,9 @@ class TabelaAtivos extends Component {
         
         novosAtivos = novosAtivos.map(ativo => (ativo.id === id) ? {ativo, porcentagem: ativo.valor/this.state.tInvestimento * 100} : ativo);
         
-        if (this.state.travado)
+        if (!this.state.travado) {
+            this.setState({tInvestimento: this.getTotal(novosAtivos)});
+        }
 
         this.setState({
             ativos: novosAtivos,
@@ -91,6 +93,10 @@ class TabelaAtivos extends Component {
         let novosAtivos = this.state.ativos.map(ativo => (ativo.id === id) ? { ...ativo, porcentagem } : ativo);
 
         novosAtivos = novosAtivos.map(ativo => (ativo.id === id) ? { ...ativo, valor: porcentagem / 100 * this.state.tInvestimento } : ativo);
+
+        if (!this.state.travado) {
+            this.setState({tInvestimento: this.getTotal(novosAtivos)});
+        }
 
         this.setState({
             ativos: novosAtivos,
