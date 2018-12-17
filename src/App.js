@@ -78,7 +78,7 @@ class TabelaAtivos extends Component {
         if (!this.state.travado) {
             this.setState({tInvestimento: this.getTotal(novosAtivos)});
         }
-
+        
         this.setState({
             ativos: novosAtivos,
             tAplicado:  this.getTotal(novosAtivos),
@@ -102,7 +102,7 @@ class TabelaAtivos extends Component {
             ativos: novosAtivos,
             tAplicado: this.getTotal(novosAtivos),
             tPorcentagem: this.calculaPorcentagemT(novosAtivos),
-        })
+        });
     }
 
     updateInvestimento(e) {
@@ -112,6 +112,7 @@ class TabelaAtivos extends Component {
             tInvestimento: Number(e.target.value),
             tAplicado: this.getTotal(novosAtivos),
             tPorcentagem: this.calculaPorcentagemT(novosAtivos),
+            travado: true,
         });
     }
 
