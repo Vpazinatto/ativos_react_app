@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   padding: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 hr {margin: 0}
@@ -11,7 +13,7 @@ table {
 }
 
 tr:nth-child(even) {
-  background-color: #f4f4f4;
+  background-color: #e7e5e5;;
 }
 
 td {
@@ -33,7 +35,7 @@ input {
 }
 
 .theadAtivos {
-  background: #f4f4f4;
+  background: #e7e5e5;
 }
 
 .thNomes {
@@ -49,9 +51,14 @@ input {
 
 .spanRestante {
   float: right;
-  padding-right: 40px;
+  padding-top: 3px;
+  padding-right: 18px;
   font-weight: normal;
   font-size: 13.4px
+}
+
+.pMaxima {
+  color: #ff0000;
 }
 
 .inputPorcentagem {
